@@ -1,1 +1,198 @@
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #f7eee7;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.contenedor {
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(38px, 8vw, 58px);
+  font-weight: normal;
+  color: #895b56;
+  margin-bottom: 8px;
+}
+
+.instruccion {
+  color: #aa8980;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 90px;
+}
+
+/* Escena del sobre */
+
+.escena {
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.sobre {
+  width: min(320px, 85vw);
+  height: 210px;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 15px 18px rgba(97, 65, 52, .15));
+}
+
+.parte-trasera {
+  position: absolute;
+  inset: 0;
+  background: #cba889;
+  border-radius: 5px;
+}
+
+/* Carta escondida */
+
+.carta {
+  position: absolute;
+  width: 88%;
+  height: 185px;
+  left: 6%;
+  bottom: 8px;
+  background: #fffaf2;
+  border: 1px solid #e7d5c5;
+  border-radius: 3px;
+  z-index: 2;
+  transition: transform 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido-carta {
+  padding: 20px;
+  color: #8e6661;
+}
+
+.contenido-carta h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+.contenido-carta p {
+  font-size: 12px;
+}
+
+.flor {
+  font-size: 30px;
+}
+
+/* Solapa superior */
+
+.solapa {
+  position: absolute;
+  inset: 0;
+  background: #dfbea0;
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transform-origin: top center;
+  transition: transform .7s ease, z-index 0s .35s;
+  z-index: 5;
+}
+
+/* Parte frontal del sobre */
+
+.parte-delantera {
+  position: absolute;
+  inset: 0;
+  background: #e8c9ab;
+  clip-path: polygon(
+    0 0, 50% 53%, 100% 0,
+    100% 100%, 0 100%
+  );
+  z-index: 3;
+}
+
+.parte-delantera::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #d8b394;
+  clip-path: polygon(
+    0 100%, 50% 48%, 100% 100%
+  );
+}
+
+/* Corazón rojo */
+
+.sello {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: #ad464b;
+  color: #fff1e9;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 6;
+  box-shadow: 0 3px 8px #8c3c3c55;
+  transition: opacity .3s, transform .3s;
+}
+
+.sello:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* Animación de apertura */
+
+.sobre.abierto .solapa {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.sobre.abierto .carta {
+  transform: translateY(-125px);
+  transition-delay: .45s;
+}
+
+.sobre.abierto .sello {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Adaptación para celular */
+
+@media (max-width: 480px) {
+  .instruccion {
+    margin-bottom: 85px;
+  }
+
+  .sobre {
+    height: 190px;
+  }
+
+  .carta {
+    height: 170px;
+  }
+
+  .sobre.abierto .carta {
+    transform: translateY(-105px);
+  }
+}
+
