@@ -254,3 +254,77 @@ h1 {
     line-height: 1.8;
   }
 }
+
+/* AJUSTES FINALES DE LA CARTA ROMÁNTICA */
+
+.pantalla-carta.visible {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 25px 12px;
+  overscroll-behavior: contain;
+}
+
+.papel-antiguo {
+  width: min(100%, 500px);
+  height: auto;
+  min-height: 650px;
+  flex-shrink: 0;
+
+  background-image: url("assets/papel-carta.jpg");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 115px 55px 110px;
+  margin: 0 auto;
+}
+
+#textoCarta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #654c43;
+
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  min-height: 30px;
+}
+
+/* Cursor de escritura */
+
+.cursor-escritura {
+  display: inline-block;
+  color: #86574f;
+  font-size: 20px;
+  animation: parpadear .8s infinite;
+}
+
+@keyframes parpadear {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Versión para celular */
+
+@media (max-width: 480px) {
+  .papel-antiguo {
+    width: 100%;
+    padding: 100px 38px 100px;
+    min-height: 650px;
+  }
+
+  .papel-antiguo h2 {
+    font-size: 39px;
+    margin-bottom: 25px;
+  }
+
+  #textoCarta {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+}
