@@ -195,3 +195,110 @@ h1 {
   }
 }
 
+/* Flores que cubren la pantalla */
+
+.transicion-flores {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.flores-animadas {
+  width: 110vmax;
+  height: 110vmax;
+  object-fit: cover;
+  transform: scale(0.1) rotate(-15deg);
+}
+
+.transicion-flores.activa {
+  visibility: visible;
+  animation: mostrarFlores 2.5s forwards;
+}
+
+.transicion-flores.activa .flores-animadas {
+  animation: expandirFlores 2.5s ease-in-out forwards;
+}
+
+@keyframes expandirFlores {
+  0% {
+    transform: scale(0.1) rotate(-15deg);
+    opacity: 0;
+  }
+  45% {
+    transform: scale(1.5) rotate(5deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(2) rotate(15deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes mostrarFlores {
+  0% { opacity: 0; }
+  30%, 70% { opacity: 1; }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Pantalla de la carta antigua */
+
+.pantalla-carta {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #f4e5d1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+.pantalla-carta.visible {
+  display: flex;
+}
+
+.papel-antiguo {
+  width: min(90vw, 500px);
+  min-height: 65vh;
+  padding: 45px 25px;
+  background: #f9eedc;
+  border: 1px solid #ddc4a5;
+  box-shadow: 0 12px 35px #765b4730;
+  position: relative;
+  text-align: center;
+}
+
+.papel-antiguo h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 45px;
+  font-weight: normal;
+  color: #8e625c;
+}
+
+.papel-antiguo p {
+  color: #8e625c;
+  margin-top: 25px;
+}
+
+.decoracion-floral {
+  position: absolute;
+  width: 160px;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.85;
+}
+
