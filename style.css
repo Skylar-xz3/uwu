@@ -222,37 +222,96 @@ h1 {
   animation: mostrarFlores 2.5s forwards;
 }
 
-.transicion-flores.activa .flores-animadas {
-  animation: expandirFlores 2.5s ease-in-out forwards;
+
+/* Flores moviéndose individualmente */
+
+.transicion-flores {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+  visibility: hidden;
 }
 
-@keyframes expandirFlores {
+.transicion-flores.activa {
+  visibility: visible;
+}
+
+.flor-vuelo {
+  position: absolute;
+  width: clamp(180px, 38vw, 430px);
+  opacity: 0;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%) scale(.15);
+}
+
+.transicion-flores.activa .flor-vuelo {
+  animation: volarFlor 2.4s ease-in-out both;
+  animation-delay: var(--delay);
+}
+
+.flor-vuelo:nth-child(1) {
+  --x: 10%; --y: 75%;
+  --delay: 0s;
+  --rotacion: -35deg;
+}
+
+.flor-vuelo:nth-child(2) {
+  --x: 85%; --y: 20%;
+  --delay: .15s;
+  --rotacion: 30deg;
+}
+
+.flor-vuelo:nth-child(3) {
+  --x: 50%; --y: 50%;
+  --delay: .35s;
+  --rotacion: -20deg;
+}
+
+.flor-vuelo:nth-child(4) {
+  --x: 20%; --y: 15%;
+  --delay: .5s;
+  --rotacion: 40deg;
+}
+
+.flor-vuelo:nth-child(5) {
+  --x: 80%; --y: 80%;
+  --delay: .65s;
+  --rotacion: -25deg;
+}
+
+.flor-vuelo:nth-child(6) {
+  --x: 45%; --y: 85%;
+  --delay: .8s;
+  --rotacion: 20deg;
+}
+
+@keyframes volarFlor {
   0% {
-    transform: scale(0.1) rotate(-15deg);
     opacity: 0;
+    transform: translate(-50%, -50%)
+      scale(.15) rotate(0deg);
   }
-  45% {
-    transform: scale(1.5) rotate(5deg);
+
+  25% {
     opacity: 1;
   }
-  70% {
-    transform: scale(2) rotate(15deg);
+
+  65% {
     opacity: 1;
+    transform: translate(-50%, -50%)
+      scale(2.5) rotate(var(--rotacion));
   }
+
   100% {
-    transform: scale(2.5) rotate(25deg);
     opacity: 0;
+    transform: translate(-50%, -50%)
+      scale(4) rotate(var(--rotacion));
   }
 }
 
-@keyframes mostrarFlores {
-  0% { opacity: 0; }
-  30%, 70% { opacity: 1; }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
 
 /* Pantalla de la carta antigua */
 
