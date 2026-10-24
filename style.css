@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+ 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+ 
 body {
   min-height: 100vh;
   min-height: 100dvh;
@@ -16,13 +12,9 @@ body {
   justify-content: center;
   overflow: hidden;
 }
-
-.contenedor {
-  width: 100%;
-  text-align: center;
-  padding: 25px;
-}
-
+ 
+.contenedor { width: 100%; text-align: center; padding: 25px; }
+ 
 h1 {
   font-family: 'Great Vibes', cursive;
   font-size: clamp(38px, 8vw, 58px);
@@ -30,22 +22,16 @@ h1 {
   color: #895b56;
   margin-bottom: 8px;
 }
-
+ 
 .instruccion {
   color: #aa8980;
   font-size: 13px;
   letter-spacing: 1px;
   margin-bottom: 90px;
 }
-
-/* Escena del sobre */
-
-.escena {
-  display: flex;
-  justify-content: center;
-  perspective: 1000px;
-}
-
+ 
+/* SOBRE */
+.escena { display: flex; justify-content: center; perspective: 1000px; }
 .sobre {
   width: min(320px, 85vw);
   height: 210px;
@@ -53,16 +39,12 @@ h1 {
   cursor: pointer;
   filter: drop-shadow(0 15px 18px rgba(97, 65, 52, .15));
 }
-
 .parte-trasera {
   position: absolute;
   inset: 0;
   background: #cba889;
   border-radius: 5px;
 }
-
-/* Carta escondida */
-
 .carta {
   position: absolute;
   width: 88%;
@@ -78,29 +60,15 @@ h1 {
   justify-content: center;
   align-items: center;
 }
-
-.contenido-carta {
-  padding: 20px;
-  color: #8e6661;
-}
-
+.contenido-carta { padding: 20px; color: #8e6661; }
 .contenido-carta h2 {
   font-family: 'Great Vibes', cursive;
   font-size: 32px;
   font-weight: normal;
   margin: 10px 0;
 }
-
-.contenido-carta p {
-  font-size: 12px;
-}
-
-.flor {
-  font-size: 30px;
-}
-
-/* Solapa superior */
-
+.contenido-carta p { font-size: 12px; }
+.flor { font-size: 30px; }
 .solapa {
   position: absolute;
   inset: 0;
@@ -110,32 +78,20 @@ h1 {
   transition: transform .7s ease, z-index 0s .35s;
   z-index: 5;
 }
-
-/* Parte frontal del sobre */
-
 .parte-delantera {
   position: absolute;
   inset: 0;
   background: #e8c9ab;
-  clip-path: polygon(
-    0 0, 50% 53%, 100% 0,
-    100% 100%, 0 100%
-  );
+  clip-path: polygon(0 0, 50% 53%, 100% 0, 100% 100%, 0 100%);
   z-index: 3;
 }
-
 .parte-delantera::after {
   content: '';
   position: absolute;
   inset: 0;
   background: #d8b394;
-  clip-path: polygon(
-    0 100%, 50% 48%, 100% 100%
-  );
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
 }
-
-/* Corazón rojo */
-
 .sello {
   position: absolute;
   left: 50%;
@@ -153,168 +109,56 @@ h1 {
   box-shadow: 0 3px 8px #8c3c3c55;
   transition: opacity .3s, transform .3s;
 }
-
-.sello:hover {
-  transform: translate(-50%, -50%) scale(1.12);
-}
-
-/* Animación de apertura */
-
-.sobre.abierto .solapa {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-
-.sobre.abierto .carta {
-  transform: translateY(-125px);
-  transition-delay: .45s;
-}
-
-.sobre.abierto .sello {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Adaptación para celular */
-
+.sello:hover { transform: translate(-50%, -50%) scale(1.12); }
+.sobre.abierto .solapa { transform: rotateX(180deg); z-index: 1; }
+.sobre.abierto .carta { transform: translateY(-125px); transition-delay: .45s; }
+.sobre.abierto .sello { opacity: 0; pointer-events: none; }
+ 
 @media (max-width: 480px) {
-  .instruccion {
-    margin-bottom: 85px;
-  }
-
-  .sobre {
-    height: 190px;
-  }
-
-  .carta {
-    height: 170px;
-  }
-
-  .sobre.abierto .carta {
-    transform: translateY(-105px);
-  }
+  .instruccion { margin-bottom: 85px; }
+  .sobre { height: 190px; }
+  .carta { height: 170px; }
+  .sobre.abierto .carta { transform: translateY(-105px); }
 }
-
-/* Flores que cubren la pantalla */
-
+ 
+/* FLORES INDIVIDUALES: SIN CUADRADO DE TRANSICIÓN */
 .transicion-flores {
   position: fixed;
   inset: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.flores-animadas {
-  width: 110vmax;
-  height: 110vmax;
-  object-fit: cover;
-  transform: scale(0.1) rotate(-15deg);
-}
-
-.transicion-flores.activa {
-  visibility: visible;
-  animation: mostrarFlores 2.5s forwards;
-}
-
-
-/* Flores moviéndose individualmente */
-
-.transicion-flores {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
+  z-index: 100;
   overflow: hidden;
   pointer-events: none;
   visibility: hidden;
 }
-
-.transicion-flores.activa {
-  visibility: visible;
-}
-
+.transicion-flores.activa { visibility: visible; }
 .flor-vuelo {
   position: absolute;
-  width: clamp(180px, 38vw, 430px);
-  opacity: 0;
+  width: clamp(180px, 35vw, 420px);
+  height: auto;
   left: var(--x);
   top: var(--y);
-  transform: translate(-50%, -50%) scale(.15);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  will-change: transform, opacity;
 }
-
 .transicion-flores.activa .flor-vuelo {
-  animation: volarFlor 2.4s ease-in-out both;
+  animation: florecer 2.5s ease-in-out both;
   animation-delay: var(--delay);
 }
-
-.flor-vuelo:nth-child(1) {
-  --x: 10%; --y: 75%;
-  --delay: 0s;
-  --rotacion: -35deg;
+.flor-vuelo:nth-child(1) { --x: 12%; --y: 75%; --delay: 0s; --rotacion: -35deg; }
+.flor-vuelo:nth-child(2) { --x: 85%; --y: 18%; --delay: .15s; --rotacion: 30deg; }
+.flor-vuelo:nth-child(3) { --x: 50%; --y: 50%; --delay: .3s; --rotacion: -20deg; }
+.flor-vuelo:nth-child(4) { --x: 20%; --y: 15%; --delay: .45s; --rotacion: 40deg; }
+.flor-vuelo:nth-child(5) { --x: 80%; --y: 80%; --delay: .6s; --rotacion: -25deg; }
+.flor-vuelo:nth-child(6) { --x: 45%; --y: 85%; --delay: .75s; --rotacion: 20deg; }
+@keyframes florecer {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.1) rotate(0deg); }
+  25% { opacity: 1; }
+  65% { opacity: 1; transform: translate(-50%, -50%) scale(2.2) rotate(var(--rotacion)); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(4) rotate(var(--rotacion)); }
 }
-
-.flor-vuelo:nth-child(2) {
-  --x: 85%; --y: 20%;
-  --delay: .15s;
-  --rotacion: 30deg;
-}
-
-.flor-vuelo:nth-child(3) {
-  --x: 50%; --y: 50%;
-  --delay: .35s;
-  --rotacion: -20deg;
-}
-
-.flor-vuelo:nth-child(4) {
-  --x: 20%; --y: 15%;
-  --delay: .5s;
-  --rotacion: 40deg;
-}
-
-.flor-vuelo:nth-child(5) {
-  --x: 80%; --y: 80%;
-  --delay: .65s;
-  --rotacion: -25deg;
-}
-
-.flor-vuelo:nth-child(6) {
-  --x: 45%; --y: 85%;
-  --delay: .8s;
-  --rotacion: 20deg;
-}
-
-@keyframes volarFlor {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%)
-      scale(.15) rotate(0deg);
-  }
-
-  25% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 1;
-    transform: translate(-50%, -50%)
-      scale(2.5) rotate(var(--rotacion));
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%)
-      scale(4) rotate(var(--rotacion));
-  }
-}
-
-
-/* Pantalla de la carta antigua */
-
+ 
+/* CARTA ANTIGUA */
 .pantalla-carta {
   position: fixed;
   inset: 0;
@@ -325,11 +169,7 @@ h1 {
   justify-content: center;
   padding: 25px;
 }
-
-.pantalla-carta.visible {
-  display: flex;
-}
-
+.pantalla-carta.visible { display: flex; }
 .papel-antiguo {
   width: min(90vw, 500px);
   min-height: 65vh;
@@ -340,106 +180,17 @@ h1 {
   position: relative;
   text-align: center;
 }
-
 .papel-antiguo h2 {
   font-family: 'Great Vibes', cursive;
   font-size: 45px;
   font-weight: normal;
   color: #8e625c;
 }
-
-.papel-antiguo p {
-  color: #8e625c;
-  margin-top: 25px;
-}
-
+.papel-antiguo p { color: #8e625c; margin-top: 25px; }
 .decoracion-floral {
   position: absolute;
   width: 160px;
   bottom: 10px;
   right: 10px;
-  opacity: 0.85;
+  opacity: .85;
 }
-
-/* Animación de flores individuales */
-
-.transicion-flores {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  visibility: hidden;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.transicion-flores.activa {
-  visibility: visible;
-}
-
-.flor-vuelo {
-  position: absolute;
-  width: 260px;
-  opacity: 0;
-  left: var(--x);
-  top: var(--y);
-}
-
-.transicion-flores.activa .flor-vuelo {
-  animation: volarFlor 2.4s ease-in-out both;
-  animation-delay: var(--delay);
-}
-
-.flor-vuelo:nth-child(1) {
-  --x: 10%; --y: 70%;
-  --delay: 0s;
-}
-
-.flor-vuelo:nth-child(2) {
-  --x: 80%; --y: 20%;
-  --delay: .15s;
-}
-
-.flor-vuelo:nth-child(3) {
-  --x: 50%; --y: 50%;
-  --delay: .3s;
-}
-
-.flor-vuelo:nth-child(4) {
-  --x: 20%; --y: 15%;
-  --delay: .45s;
-}
-
-.flor-vuelo:nth-child(5) {
-  --x: 75%; --y: 75%;
-  --delay: .6s;
-}
-
-.flor-vuelo:nth-child(6) {
-  --x: 45%; --y: 85%;
-  --delay: .75s;
-}
-
-@keyframes volarFlor {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%)
-      scale(.1) rotate(-25deg);
-  }
-
-  35% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 1;
-    transform: translate(-50%, -50%)
-      scale(2) rotate(15deg);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%)
-      scale(4) rotate(35deg);
-  }
-}
-
