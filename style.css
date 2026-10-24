@@ -361,3 +361,85 @@ h1 {
   opacity: 0.85;
 }
 
+/* Animación de flores individuales */
+
+.transicion-flores {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.transicion-flores.activa {
+  visibility: visible;
+}
+
+.flor-vuelo {
+  position: absolute;
+  width: 260px;
+  opacity: 0;
+  left: var(--x);
+  top: var(--y);
+}
+
+.transicion-flores.activa .flor-vuelo {
+  animation: volarFlor 2.4s ease-in-out both;
+  animation-delay: var(--delay);
+}
+
+.flor-vuelo:nth-child(1) {
+  --x: 10%; --y: 70%;
+  --delay: 0s;
+}
+
+.flor-vuelo:nth-child(2) {
+  --x: 80%; --y: 20%;
+  --delay: .15s;
+}
+
+.flor-vuelo:nth-child(3) {
+  --x: 50%; --y: 50%;
+  --delay: .3s;
+}
+
+.flor-vuelo:nth-child(4) {
+  --x: 20%; --y: 15%;
+  --delay: .45s;
+}
+
+.flor-vuelo:nth-child(5) {
+  --x: 75%; --y: 75%;
+  --delay: .6s;
+}
+
+.flor-vuelo:nth-child(6) {
+  --x: 45%; --y: 85%;
+  --delay: .75s;
+}
+
+@keyframes volarFlor {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%)
+      scale(.1) rotate(-25deg);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%)
+      scale(2) rotate(15deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%)
+      scale(4) rotate(35deg);
+  }
+}
+
